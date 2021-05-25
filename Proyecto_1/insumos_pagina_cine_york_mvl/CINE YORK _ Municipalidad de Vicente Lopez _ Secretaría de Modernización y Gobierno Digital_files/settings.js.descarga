@@ -1,0 +1,519 @@
+$(document).ready(function($){
+
+    var $maincarrusel = $("#maincarrusel");
+	var $carruselfrase = $("#carruselfrase");
+	var $mainNav = $("#mainNav");
+	var winWidth = $(window).width();
+	var scrollPos = $(document).scrollTop();
+	var $logolink = $("#logolink");
+	var $shareul = $("#shareul");
+	var $sharebtn = $("#sharebtn");
+	var $gallery = $(".gallery .lightbox");
+	var $homegallery = $(".galleryhome");
+
+
+	var $elementsdropdown = $("li.dropdown");
+
+	if ($elementsdropdown.length) {
+		$elementsdropdown.on({
+			"mouseover":function(){
+				$(this).addClass("open");
+			},
+			"mouseout":function(){
+				$(this).removeClass("open");
+			}
+		})
+	}
+
+	/* mega menu */
+	if ($(".mega-dropdown").length){
+		$(document).on('click', '.mega-dropdown', function(e) {
+		  e.stopPropagation();
+		});
+
+		$(".mega-dropdown").on({
+			mouseover:function(){
+				$(this).addClass("open");
+			},
+			mouseout:function(){
+				$(this).removeClass("open");
+			}
+		});
+		$(".mega-dropdown-menu").on({
+			mouseover:function(){
+				$(this).parent(".mega-dropdown").addClass("open");
+			},
+			mouseout:function(){
+				$(this).parent(".mega-dropdown").removeClass("open");
+			}
+		});
+	}
+	// gallery home
+
+	// menu responsive
+	
+
+	var $menuresponsive = $("#menumibarrio_responsive, #menumibarrio_responsive h6 ");
+	var $ulmenuresponsive = $menuresponsive.find(".men");
+
+	/*$( "body" ).click(function( event ) {
+	  console.log( "clicked: " + event.target.nodeName );
+	});*/
+	
+	$menuresponsive.click(function(event){
+		var contador = 0;
+		contador++;
+		if($(event.target).is($(this))){
+			
+			console.log(contador);	
+			$ulmenuresponsive.slideToggle("fast");
+			/*if(contador % 2 === 0 ){
+				$("#menumibarrio_responsive > h6").find("i").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+			}else{
+				$("#menumibarrio_responsive > h6").find("i").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+			}*/
+		}
+	});
+	$(document).click(function(event){
+		if(! $(event.target).is($menuresponsive)){
+			$ulmenuresponsive.slideUp("fast");
+			//$("#menumibarrio_responsive > h6").find("i").addClass("fa-chevron-down").removeClass("fa-chevron-up");
+		}
+	});
+	/*$menuresponsive.hover(function(ev){
+		$(this).find(".men").show("slow");
+	});*/
+
+	if ($homegallery.length) {
+		$homegallery.magnificPopup({
+			delegate: 'div a',
+			type: 'image',
+			tLoading: 'Cargando imgaen #%curr%...',
+			mainClass: 'mfp-img-mobile',
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+			},
+			image: {
+				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+				/*titleSrc: function(item) {
+					return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';
+				}*/
+			}
+		});
+	}
+	if ($gallery.length) {
+		$gallery.magnificPopup({
+			type: 'image',
+			closeOnContentClick: false,
+			image: {
+				verticalFit: true
+			}
+		});
+	}
+	changeNavWhenScroll();
+	
+	if($shareul.length && $sharebtn.length){
+		$shareul.find("li.redsocial").hide();
+		$sharebtn.click(function(event){
+			event.preventDefault();
+			$shareul.find("li.redsocial").fadeIn("slow");
+		});
+	}
+
+	function getWindowWidth(){
+		return winWidth;
+	}
+	function getScrollPosition(){
+		return scrollPos;
+	}
+
+	$(window).scroll(function(){
+		scrollPos = $(document).scrollTop();
+		getScrollPosition();
+		changeNavWhenScroll();
+	});
+
+	$(window).resize(function(){
+		winWidth = $(window).width();
+		getWindowWidth();
+		if($serviciossection.length){
+			move();
+		}
+	});
+
+	/*$("body").click(function(){
+		console.log("width " + getWindowWidth() + "scroll "+ getScrollPosition());
+	});*/
+
+	function changeNavWhenScroll(){
+		var scrollposition = getScrollPosition();
+		viewPortwidth = getWindowWidth();
+		if (scrollposition >= 60){
+			$mainNav.addClass("fixed");
+			$logolink.show();
+		}else if (scrollposition <= 60) {
+			$mainNav.removeClass("fixed");
+			$logolink.hide();
+		}
+		/*if( winWidth >= 769 && scrollPosition < 60){
+			$mainNav.removeClass("fixed");
+			$logolink.hide();
+		}else{
+			$mainNav.addClass("fixed");
+			$logolink.show();
+		}*/
+	}
+
+
+	if($maincarrusel.length){
+		$maincarrusel.owlCarousel({
+			items: 1,
+			itemsDesktop : [1000,1], //5 items between 1000px and 901px
+			itemsDesktopSmall : [900,1], // betweem 900px and 601px
+			itemsTablet: [768,1], //2 items between 600 and 0
+			itemsMobile : [479,1], // itemsMobile disabled - inherit from itemsTablet option
+			autoPlay: true,
+			pagination: true,
+			stopOnHover: true,
+            center:true
+		});
+	}
+
+	if($carruselfrase.length){
+		$carruselfrase.owlCarousel({
+			items: 1,
+			itemsDesktop : [1000,1], //5 items between 1000px and 901px
+			itemsDesktopSmall : [900,1], // betweem 900px and 601px
+			itemsTablet: [768,1], //2 items between 600 and 0
+			itemsMobile : [479,1], // itemsMobile disabled - inherit from itemsTablet option
+			autoPlay: false,
+			pagination: true,
+			stopOnHover: true
+
+		});
+	}
+
+
+	// add link
+
+	/*$noticiaimglink.click(function(){
+		window.location = url;
+		$el = $(this);
+		$el.
+	});*/
+	
+
+
+	// servicios section
+	var $serviciossection = $("section.servicios");
+	var $mapcontainer = $("#mapcontain");
+
+	
+	function move(){
+		var mover = false;
+		if(winWidth <= 992){
+			mover = true;
+		}else{
+			mover = false;
+		}
+		if (mover){
+			$serviciossection.find("#mapcontain").insertBefore($(".servicescontainer"));	
+		}else{
+			$serviciossection.find("#mapcontain").insertAfter($(".servicescontainer"));
+		}
+	}
+	if($serviciossection.length){
+		move();
+	}
+
+	/* services filter */
+	// menu items
+	var $menu_salud = $("#salud");
+	var $menu_transporte = $("#transporte");
+	// filter items
+	var $filterItemsSalud = $("#filterItems-salud");
+	var $filterItemsTransporte = $("#filterItems-transporte");
+    var $filterItemsReciclaje = $("#filterItems-reciclaje");
+    var $filterItemsInstiPublicas = $("#filterItems-instiPublicas");
+
+	// service items
+
+	var $containerServices = $("#containerServices");
+
+	// Sacar div.info items de servicios que no tienen informacion extra
+
+	$containerServices.children(".itemservice").not(".moreinfo").find(".extrainfo").hide();
+	$containerServices.children(".itemservice").not(".moreinfo").find(".info").contents().unwrap();
+
+	// filtering
+
+	$filterItemsTransporte.hide();
+	$filterItemsTransporte.children("li").click(function(){
+
+		var $el = $(this);
+		$el.addClass("inactive");
+		$el.siblings().removeClass("inactive");
+
+		$("#refinamientoFarmacia").css("display","none");
+        $("#refinamientoEstacionServicio").css("display","none");
+        $(".refinado_selected").empty();
+        $(".refinado_selected").append("Ninguno");
+
+        switch($el.attr("class").split(' ')[0]) {
+		    case "filter-todos":
+		    	$containerServices.children(".itemservice").not(".centrodesalud, .farmacia").fadeIn(300);
+                filtrar('transporte', $el.attr("class").split(' ')[0]);
+		    	break;
+		    /*
+		    case "filter-tren":
+		    	$containerServices.children(".itemservice.tren").fadeIn("slow");
+		    	$containerServices.find(".itemservice").not(".tren").hide();
+		    	break;
+		    case "filter-colectivo":
+		    	$containerServices.children(".itemservice.colectivo").fadeIn("slow");
+		    	$containerServices.find(".itemservice").not(".colectivo").hide();
+		    	break;
+		    case "filter-estacionesdeservicio":
+		    	$containerServices.children(".itemservice.estacion").fadeIn("slow");
+		    	$containerServices.find(".itemservice").not(".estacion").hide();
+                $("#refinamientoFarmacia").css("display","none");
+                $("#refinamientoEstacionServicio").css("display","block");
+                $(".refinado_selected").empty();
+                $(".refinado_selected").append("Ninguno");
+		    	break;
+            case "filter-bus":
+                $containerServices.children(".itemservice.bus").fadeIn("slow");
+                $containerServices.find(".itemservice").not(".bus").hide();
+                break;
+
+            case "filter-gomerias":
+                $containerServices.children(".itemservice.gomeriashtml").fadeIn("slow");
+                $containerServices.find(".itemservice").not(".gomeriashtml").hide();
+                $("#refinamientoFarmacia").css("display","none");
+                $("#refinamientoEstacionServicio").css("display","none");
+                //$(".refinado_selected").empty();
+                //$(".refinado_selected").append("Ninguno");
+                break;
+			*/
+		}
+        //filtrar('transporte', $el.attr("class").split(' ')[0]);
+	});
+
+	$filterItemsSalud.children("li").click(function(){
+		var $el = $(this);
+		$el.addClass("inactive");
+		$el.siblings().removeClass("inactive");
+
+        $("#refinamientoFarmacia").css("display","none");
+        $("#refinamientoEstacionServicio").css("display","none");
+
+		switch($el.attr("class").split(' ')[0]) {
+		    case "filter-todos":
+		    	$containerServices.children(".itemservice").not(".estacion, .colectivo, .tren").fadeIn(300);
+                filtrar('salud', $el.attr("class").split(' ')[0]);
+		    	break;
+			/*
+		    case "filter-farmacia":
+		    	$containerServices.children(".itemservice.farmacia").fadeIn("slow");
+		    	$containerServices.find(".itemservice").not(".farmacia").hide();
+                $("#refinamientoFarmacia").css("display","block");
+                $("#refinamientoEstacionServicio").css("display","none");
+                $(".refinado_selected").empty();
+                $(".refinado_selected").append("Ninguno");
+		    	break;
+		    case "filter-centrosdesalud":
+		    	$containerServices.children(".itemservice.centrosdesalud").fadeIn("slow");
+		    	$containerServices.find(".itemservice").not(".centrosdesalud").hide();
+		    	break;
+			*/
+		}
+        //filtrar('salud', $el.attr("class").split(' ')[0]);
+	});
+
+    $filterItemsReciclaje.hide();
+    $filterItemsReciclaje.children("li").click(function(){
+        var $el = $(this);
+        $el.addClass("inactive");
+        $el.siblings().removeClass("inactive");
+
+        switch($el.attr("class").split(' ')[0]) {
+            case "filter-todos":
+                $containerServices.children(".itemservice").not(".reciclaje").fadeIn(300);
+                filtrar('reciclaje', $el.attr("class").split(' ')[0]);
+                break;
+            /*case "filter-contenedores":
+                $containerServices.children(".itemservice.reciclaje").fadeIn("slow");
+                $containerServices.find(".itemservice").not(".reciclaje").hide();
+                break;*/
+        }
+//        filtrar('reciclaje', $el.attr("class").split(' ')[0]);
+    });
+
+
+    $filterItemsInstiPublicas.hide();
+    $filterItemsInstiPublicas.children("li").click(function(){
+        var $el = $(this);
+        $el.addClass("inactive");
+        $el.siblings().removeClass("inactive");
+
+        switch($el.attr("class").split(' ')[0]) {
+            case "filter-todos":
+                $containerServices.children(".itemservice").not(".insti-publicas").fadeIn(300);
+                filtrar('insti-publicas', $el.attr("class").split(' ')[0]);
+                break;
+            /*case "filter-delegaciones":
+                $containerServices.children(".itemservice.insti-publicas").fadeIn("slow");
+                $containerServices.find(".itemservice").not(".insti-publicas").hide();
+                break;*/
+        }
+        //filtrar('insti-publicas', $el.attr("class").split(' ')[0]);
+    });
+
+
+	// mi barrio slider inicio
+
+	var $phone_slider = $("#phoneslides");
+
+	if ($phone_slider.length) {
+		$phone_slider.owlCarousel({
+			items: 1,
+			itemsDesktop : [1000,1], //5 items between 1000px and 901px
+			itemsDesktopSmall : [900,1], // betweem 900px and 601px
+			itemsTablet: [768,1], //2 items between 600 and 0
+			itemsMobile : [479,1], // itemsMobile disabled - inherit from itemsTablet option
+			autoPlay: true,
+			pagination: true,
+			stopOnHover: false
+
+		});
+	}
+
+	// mi barrio nueva solicitud
+	/*var $fatherwizzard = $(".bs-wizard");
+	var $step = $(".bs-wizard-step");
+	var steps = $step.length;
+	var startstep = 1;
+	var $buttonnext = $("#wizzardSiguiente");
+	var $buttonprev = $("#wizzardPrev");
+	
+	$buttonnext.click(function(){
+		startstep++;
+
+
+	});
+	$buttonprev.click(function(){
+		startstep--;
+	});
+	console.log("starstep "+startstep);
+	switch (startstep){
+		case 1:
+			$fatherwizzard.children(".bs-wizard").eq(1).addClass("current");
+			console.log("1");
+			$fatherwizzard.children(".bs-wizard").removeClass("current");
+		break;
+		case 2:
+			$fatherwizzard.children(".bs-wizard").eq(2).addClass("current");
+			$fatherwizzard.children(".bs-wizard").removeClass("current");
+		break;
+		case 3:
+			$fatherwizzard.children(".bs-wizard").eq(3).addClass("current");
+			$fatherwizzard.children(".bs-wizard").removeClass("current");
+		break;
+		case 4:
+			$fatherwizzard.children(".bs-wizard").eq(4).addClass("current");
+			$fatherwizzard.children(".bs-wizard").removeClass("current");
+		break;
+	}*/
+
+	// paso 3
+
+
+	var $infosolicitud = $("#infosolicitud");
+	var $inputtextdireccion = $("#divinputtextdireccion");
+
+	if ($(".nuevasolicitud").length){
+
+
+		$("input[name=direccion]:radio").change(function(){
+			
+			if( ($("#radiousardomi").is(':checked')) || ($("#radiousarubic").is(':checked')) ){
+				$inputtextdireccion.hide();
+			}else if ($("#radioescribir").is(':checked')){
+				$inputtextdireccion.show();
+			}
+		});
+/*
+		$("#fotosreclamos").owlCarousel({
+			items: 1,
+			itemsDesktop : [1000,1], // items between 1000px and 901px
+			itemsDesktopSmall : [900,1], // betweem 900px and 601px
+			itemsTablet: [768,1], // items between 600 and 0
+			itemsMobile : [479,1], // itemsMobile disabled - inherit from itemsTablet option
+			autoPlay: true,
+			pagination: true,
+			stopOnHover: false
+
+		});
+		*/
+	}
+
+	/* accordeon mis solicitudes */
+    var $collapse = $(".panel-collapse.collapse");
+    
+	function toggleChevron(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find("i.indicator")
+            .toggleClass('fa-chevron-down fa-chevron-up');
+
+    }
+    $('#accordion').on('hidden.bs.collapse', toggleChevron);
+    $('#accordion').on('shown.bs.collapse', toggleChevron);
+
+
+	// active links for url.
+
+	/*var currenturl = window.location.href;
+	console.log(currenturl);
+	switch (currenturl){
+		case "http://localhost/vicente/novedades-eventos.php":
+			var $link = $mainNav.find("a:contains('Novedades y eventos')");
+			$link.parent().addClass("active");
+			$link.parent().siblings().removeClass("active");
+			console.log("entro a novedades");
+			break;
+		case "http://localhost/vicente/mibarrio_inicio.php":
+			$mainNav.find("a:contains('Novedades y eventos')").parent().addClass("active");
+			break;
+		case "http://localhost/vicente/index.php":
+			break;
+		default:
+			console.log("no es ninguna de las direcciones");
+	}*/
+
+
+});
+$( window ).on("load",function() {
+  // Run code
+  //-- isotope
+	var $container = $(".notiyevefilter");
+	var $groupfilter = $(".filters-button-group").children("button");
+	
+	$container.isotope({
+	  itemSelector: '.elementItem',
+	  layoutMode: 'masonry',
+	  masonry: {
+	  	horizontalOrder: true
+	  }
+	})
+	$groupfilter.click(function(){
+		var filterValue = $(this).attr("data-filter");
+		$container.isotope({ filter: filterValue });
+
+		$(this).addClass("activeButtonIsotope");
+		$(this).siblings().removeClass("activeButtonIsotope");
+
+	});
+});

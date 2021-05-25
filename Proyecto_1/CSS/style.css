@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,300&display=swap');
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+.tit-hist{ 
+    font-size: 2em;
+    font-style: italic;
+}
+
+.historia { 
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.formcons{
+    height: 30em;
+    width: 30em;
+    resize: both;
+    overflow: auto;
+  }
+
+.txtcons {
+    font-size: 20px;
+    margin-bottom:10px;
+    padding: 8px 6px;
+    height: 10em;
+    width: 20em;
+    box-sizing: border-box;
+}
+
+input[type=submit]:hover {
+    background-color: #258a2a;
+}
+
