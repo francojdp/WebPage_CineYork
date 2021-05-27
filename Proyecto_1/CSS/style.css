@@ -1,16 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100;1,300&display=swap');
 
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 100;}
+  }
+
 body{
     font-family: 'Roboto', sans-serif;
-    background-color: rgb(245, 235, 220);
+    color:rgb(0, 0, 0);
+    background-color: rgb(165, 160, 156);
+    background-image: url("https://farsamag.com.ar/panel/wp-content/uploads/2019/04/cine-teatro-york-2.jpg");
+    background-position: 0% -20%;
+    background-blend-mode: lighten; 
 }
 
 header{
-    background-color: #85AB3F;
+    background-color: #85ab3f3f;
+    border-style: double;
+    text-indent: 2em;
 }
 
 footer{
-    background-color: #913683;
+    background-color: #9136836b;
+    border-style: double;
+    text-indent: 2em;
 }
 
 input[type=text], select {
@@ -26,11 +39,15 @@ input[type=text], select {
 .tit-hist{ 
     font-size: 1.5em;
     font-style: italic;
+    animation-name: fade;
+    animation-duration: 6s;
 }
 
 .historia { 
     font-size: 1em;
     font-style: italic;
+    animation-name: fade;
+    animation-duration: 8s;
 }
 
 .formcons{
@@ -42,7 +59,7 @@ input[type=text], select {
 
 .txtcons {
     font-size: 20px;
-    margin-bottom:10px;
+    margin-bottom:0;
     padding: 8px 6px;
     height: 10em;
     width: 20em;
@@ -62,31 +79,35 @@ input[type=submit]:hover {
 .fot_hist{
     display: inline-grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 0em;
+    grid-template-rows: 1fr 5fr;
+    grid-gap: 0 2em;
     
 }
 
 .divhist{
     align-self: start;
-    justify-self: stretch;
+    justify-self: fill;
     grid-column-start: 1;
+    grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 5;
 }
 
 .divfot{
-    width: 75%;
-    height: 75%;
+    box-sizing: border-box;
     grid-column-start: 2;
     grid-row-start: 1;
-    grid-row-end: 5;
+    grid-row-end: 4;
+    animation-name: fade;
+    animation-duration: 10s;
 }
 
 .divfrase{
     align-self: end;
     grid-column-start: 1;
     grid-row-start: 1;
+    animation-name: fade;
+    animation-duration: 4s;
 }
 
 .dividx{
@@ -96,7 +117,103 @@ input[type=submit]:hover {
     justify-content: space-around;
 }
 
+.galidx:hover, .ubidx:hover, .conidx:hover, .foridx:hover{
+    background-color:#167c08;
+    color:#a2d14b 
+}
+
+
 .titindx{
     align-self: start;
     font-weight: bold;
 }
+
+.divpie{
+    font-size: 1.25em;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+}
+
+.titpie{
+    align-self: start;
+    font-weight: bold;
+}
+
+.ubic-inic{
+    text-indent: 2em;
+    margin-bottom: 1em;
+}
+
+.ubic-inic:hover{
+    text-indent: 2em;
+    margin-bottom: 1em;
+    background-color: #167c08;
+}
+
+.responsive{
+    width: 100%;
+    height: auto;
+}
+
+.formcons{
+    margin-top: 1em;
+}
+
+.carousel-inner{
+    margin: auto;
+}
+
+.video{
+    margin: auto;
+}
+
+.envcons{
+    margin-top: 0em;
+    margin-bottom: 2em;
+}
+
+@media (max-width: 1080px){
+    .dividx{
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 720px){
+    .dividx{
+        font-size: 1.5em;
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+        flex-direction: column;
+        flex-wrap: wrap;
+        }
+}
+
+
+@media (max-width: 480px){
+    .dividx{
+        margin-top: 1em;
+        font-size: 1.5em;
+        display: flex;
+        justify-content: center;
+        justify-content: space-around;
+        flex-direction: column;
+        flex-wrap: wrap;
+        }
+
+    .divhist{
+        align-self: start;
+        justify-self: fill;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 5;
+    }   
+}
+

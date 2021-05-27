@@ -5,21 +5,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="CSS/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/48ec091a38.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header><h1>Galeria</h1></header>
-    <a href="index.html">Inicio</a>
-    <h3>Danza</h3>
-    <p>Ballet "Raíces y Tradiciones"</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/7Nd5EZTb610" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <h3>Bandas en el York</h3>
-    <p>Hernan Tamanini y la Tijuana Blus</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/3mmQV8MTsoo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <header><h1>Galería</h1>
+        <div class=dividx>
+            <div class="titindx">Indice</div>
+            <a class= "galidx" href="index.html">Inicio</a><br>
+            <a class= "ubidx"href="ubicacion.html">Cómo llegar</a><br>
+            <a class= "conidx"href="contacto.html">Contacto</a><br>
+            <a class= "foridx"href="formularioconsult.html">Consulta Online</a><br><br>
+        </div>
     
-    <p>Fluir Activo</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/kiik9NcQZ3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    
-    <footer></footer>
+    </header>
+
+    <div class="bd-example">
+        <div id="carouselExampleCaptions" class="carousel slide" data-interval="false"> 
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <iframe id="player" class="video" width=100% height=700em src="https://www.youtube.com/embed/7Nd5EZTb610?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
+            <div class="carousel-item">
+                <iframe id="player" class="video" width=100% height=700em src="https://www.youtube.com/embed/3mmQV8MTsoo?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
+            <div class="carousel-item">                
+                <iframe id="player" class="video" width=100% height=700em src="https://www.youtube.com/embed/kiik9NcQZ3I?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <div class="carousel-caption d-none d-md-block">
+              </div>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    <footer>
+        <h3 class="titpie">LA MUNICIPALIDAD - Teléfonos útiles</h3>
+        <p class="divpie"> 
+            <span>Cultura 4799-9999<i class="fas fa-palette"></i></span><br>
+            <span>Atención al Vecino 147<i class="fas fa-comment-dots"></i></span><br>
+            <span>Emergencias 911<i class="fas fa-ambulance"></i></span><br>
+            <span>Bomberos 100<i class="fas fa-fire-extinguisher"></i></span><br>
+            </p>
+    </footer>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function()
+    {
+        $("carouselExampleCaptions").on('slide.bs.carousel', function(event) {
+            players[event.from].pauseVideo();
+        });
+    });
+</script>
 </body>
 </html>
